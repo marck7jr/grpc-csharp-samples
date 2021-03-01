@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+import "google/protobuf/duration.proto";
+
+option csharp_namespace = "Grpc.Sample.Server";
+
+package count;
+
+service Counter {
+	rpc GetCount(CounterRequest) returns (stream CounterReply);
+}
+
+message CounterRequest {
+	int32 initialValue = 1;
+	google.protobuf.Duration delayDuration = 2;
+	int32 maximumValue = 3;
+}
+
+message CounterReply {
+	int32 currentValue = 1;
+}
